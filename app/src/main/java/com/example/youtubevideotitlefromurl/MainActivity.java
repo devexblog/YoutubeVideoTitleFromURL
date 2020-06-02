@@ -33,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
         submitButton = (Button) findViewById(R.id.submit_button);
         resultTextView = (TextView) findViewById(R.id.result_textview);
 
+        //check for intent from youtube app
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if (type.contains("text")) {
+                handleSentText(intent);
+            }
+        }
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,4 +93,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    //handling the intent from youtube app
+    private void handleSentText(Intent intent) {
+        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (sharedText != null) {
+            //set the url edit text to this text
+            urlEdt.setText(sharedText);
+
+        }
+    }
 }
