@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">YoutubeVideoTitleFromURL</string>
+    <string name="enter_url">Enter the link of YouTube video</string>
+</resources>
